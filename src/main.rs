@@ -1,29 +1,43 @@
-use std::io;
+use std::io::stdin;
 use rand::Rng;
 
 fn main() {
-    let mut list: Vec<String> = vec![];
-    
-    loop {
-        let mut title = String::new();
-        io::stdin().read_line(&mut title).expect("invalid title");
-        if title.trim().to_string() == "end" {
-            break;
-        }
-        list.push(title.trim().to_string());
-    }
-    let mut list_size: u16 = list.len() as u16;
-    let mut weighted_list: Vec<String> = vec![];
-    for title in list {
-        let mut i = list_size;
+    let mut list_list: Vec<Vec<String>> = Vec::new();
+    let mut is_looping = true;
+    while is_looping {
+        let mut list: Vec<String> = Vec::new();
         loop {
-            weighted_list.push(title.to_string());
-            i -= 1;
-            if i == 0 {
-                break;
+            let mut title = String::new();
+            stdin().read_line(&mut title).expect("invalid title");
+            match title.trim() {
+                "add" => {
+                    list.truncate(10);
+                    list_list.push(list);
+                    break;
+                },
+                "end" => {
+                    list.truncate(10);
+                    list_list.push(list);
+                    is_looping = false;
+                    break;
+                },
+                _ => {
+                    list.push(title.to_string());
+                }
             }
         }
-        list_size -= 1;
+    }
+    let mut weighted_list: Vec<String> = Vec::new();
+    for list in list_list {
+        let mut item_count = list.len();
+        for item in list {
+            let mut weight = item_count;
+            while weight > 0 {
+                weighted_list.push(item.clone());
+                weight -= 1;
+            }
+            item_count -= 1;
+        }
     }
     println!("{}", weighted_list[rand::thread_rng().gen_range(1..weighted_list.len())]);
 }
