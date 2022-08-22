@@ -5,7 +5,9 @@ fn main() {
     let mut list_list: Vec<Vec<String>> = Vec::new();
     let mut is_looping = true;
     while is_looping {
+
         let mut list: Vec<String> = Vec::new();
+        println!("Enter List:");
         loop {
             let mut title = String::new();
             stdin().read_line(&mut title).expect("invalid title");
@@ -13,12 +15,14 @@ fn main() {
                 "add" => {
                     list.truncate(10);
                     list_list.push(list);
+                    println!();
                     break;
                 },
                 "end" => {
                     list.truncate(10);
                     list_list.push(list);
                     is_looping = false;
+                    println!();
                     break;
                 },
                 _ => {
@@ -39,5 +43,6 @@ fn main() {
             item_count -= 1;
         }
     }
+    println!("Result:");
     println!("{}", weighted_list[rand::thread_rng().gen_range(1..weighted_list.len())]);
 }
