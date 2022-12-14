@@ -36,9 +36,7 @@ fn random_item_from_list(list: Vec<String>) -> String {
     url.push_str(&list.len().to_string()[..]);
     match get(&url).call() {
         Ok(resp) => {
-            // println!("{}", resp.into_string().unwrap());
             result = resp.into_string().unwrap().trim().parse().unwrap();
-            // result = 0;
         }
         Err(_) => {
             println!("Random.org request failed. Generating result locally...");
