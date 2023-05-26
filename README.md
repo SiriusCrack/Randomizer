@@ -1,7 +1,7 @@
 # Randomizer
 Tool to help with decision-making.
 
-Takes a newline-separated list of items sorted by decreasing preference and returns a randomized item weighted by preference.
+Takes a list of items sorted decreasingly by preference, and returns one random item, weighted by that preference.
 
 ## Usage
 Input should be a series of items as plain text separated by lines, terminated by an empty line.
