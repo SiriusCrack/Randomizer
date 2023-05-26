@@ -1,16 +1,18 @@
 # Randomizer
-_Takes a series of items and returns a single item._
+Tool to help with decision-making.
+
+Takes a newline-separated list of items sorted by decreasing preference and returns a randomized item weighted by preference.
 
 ## Usage
-Input should be a series of items as plain text separated by line.
-
+Input should be a series of items as plain text separated by lines, terminated by an empty line.
 
 ```
 itemA
 itemB
 itemC
+
 ```
 
-Randomization will prefer items towards the top of the list. Upon reaching the end of the input, a result will be printed.
+Items will be weighted by their precedence in the list.
 
 Randomization performed by [Random.org](https://www.random.org).
